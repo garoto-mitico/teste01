@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ta brava cmg?</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  }
+  .buttons {
+    position: relative;
+    width: 320px;
+    height: 60px;
+  }
+  button {
+    font-size: 1.4em;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: background-color 0.3s, transform 0.3s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  button#sim {
+    background-color: #ff3860;
+    color: white;
+    left: 10px;
+  }
+  button#sim:hover {
+    background-color: #e62e56;
+  }
+  button#nao {
+    background-color: #22c55e;
+    color: white;
+    right: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  button#nao:hover {
+    background-color: #1da64f;
+  }
+</style>
+</head>
+<body>
+  <h1>ta brava cmg ?</h1>
+  <div class="buttons">
+    <button id="sim" type="button">sim</button>
+    <button id="nao" type="button">não</button>
+  </div>
+<script>
+  const simBtn = document.getElementById('sim');
+  const container = document.querySelector('.buttons');
+
+  simBtn.addEventListener('click', () => {
+    // Container width and height to limit button movement
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = simBtn.getBoundingClientRect();
+
+    // Calculate max position offsets within container so button is fully visible
+    const maxLeft = container.clientWidth - simBtn.offsetWidth;
+    const maxTop = container.clientHeight - simBtn.offsetHeight;
+
+    // Random left and top values inside container boundaries
+    const left = Math.floor(Math.random() * maxLeft);
+    const top = Math.floor(Math.random() * maxTop);
+
+    // Apply new position to button (relative to container)
+    simBtn.style.left = `${left}px`;
+    simBtn.style.top = `${top}px`;
+    simBtn.style.transform = 'translate(0, 0)'; // reset transform translateY for new top setting
+  });
+</script>
+</body>
+</html>
